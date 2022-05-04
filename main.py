@@ -11,15 +11,15 @@ def producer(name, numero):
 
     """Productor"""
 
-    count = 1 #mostrador
+    count = 0 #mostrador
 
-    while (numero!=count):
+    while (count<numero):
 
         q.join()
 
         q.put(count)
 
-        print(f"{name} esta produciendo el bollo {count}")
+        print(f"{name} esta produciendo el bollo {count+1}")
 
         count+=1
 
@@ -28,13 +28,13 @@ def customer(name, numero):
 
     """consumidor"""
 
-    count = 1
+    count = 0
 
-    while (numero!=count):
+    while (count<numero):
 
-        #baozi = q.get()
+        baozi = q.get()
 
-        print(f"El consumidor- {name} está comiendo el bollo {count}")
+        print(f"El consumidor- {name} está comiendo el bollo {count+1}")
 
         count+=1
 
@@ -47,6 +47,7 @@ def customer(name, numero):
 if __name__ == '__main__':
 
     numero=input('Introduce el número de bollos que se quiere realizar: ')
+    numero=int(numero)
 
     t1 = Thread(target=producer,args=("Maestro Zhang",numero))
 
